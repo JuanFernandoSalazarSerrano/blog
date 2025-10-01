@@ -1,1 +1,25 @@
-<p>writeups works!</p>
+<div class="writeups-container">
+
+  <h1 class="archivo-black-regular text-4xl text-center mt-12 mb-8">
+    Writeups
+  </h1>
+
+  @if (writeups?.length === 0) {
+    <div class="lato-bold flex flex-col items-center mt-10 mb-10">
+      <div class="text-gray-500 text-lg font-semibold">
+        No writeups publications available at this time.
+      </div>
+    </div>
+  } @else {
+    @for (publication of writeups; track $index) {
+      <div class="flex flex-col items-center mb-10 hover:cursor-pointer">
+        <publication-card-component
+          [publicationCartInfo]="publication"
+          [routerLink]="['/writeups', publication.id]"
+          [state]="{publication: publication}">
+        ></publication-card-component>
+      </div>
+    }
+  }
+
+</div>

@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Publication } from '../../models/Publication';
+import { PublicationsService } from '../../services/publications-service';
+import { PublicationCardComponent } from '../publication-card-component/publication-card-component';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-writeups',
-  imports: [],
-  templateUrl: './writeups.html',
-  styleUrl: './writeups.css'
+  selector: 'writeups',
+  imports: [PublicationCardComponent, RouterModule],
+  templateUrl: './writeups.html'
 })
-export class Writeups {
+export class Writeups implements OnInit {
 
+    writeups!: Publication[];
+
+    constructor(private readonly publicationsService: PublicationsService) {}
+
+  ngOnInit(): void {
+    this.publicationsService.findAllPublications().subscribe(
+      pubs => {
+        this.writeups = pubs.filter(solution => solution.topic === 'writeups');
+      }
+    );
+  }
 }
+
