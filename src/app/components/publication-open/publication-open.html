@@ -1,0 +1,44 @@
+<!-- Publication detail (uses your Tailwind + font utility classes) -->
+<div class="max-w-4xl mx-auto px-6 py-12">
+  <!-- Title -->
+  <header class="mb-8">
+    <h1 class="archivo-black-regular text-3xl md:text-4xl lg:text-5xl text-black leading-tight">
+      {{ publication?.title }}
+    </h1>
+
+    <!-- meta row -->
+    <div class="oswald-regular mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500">
+      <div>
+        Published in
+        <span class=" text-black font-medium hover:text-red-700">
+          {{ publication?.publishedIn }}
+        </span>,
+        <span class="font-medium text-slate-600">{{ publication?.date }}</span>
+      </div>
+
+      <div class="oswald-regular flex items-center gap-2">
+        <span class="inline-block px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-xs">
+          #{{ publication?.id }}
+        </span>
+        <span class="inline-block px-2 py-0.5 rounded-md border border-slate-100 text-slate-500 text-xs">
+          {{ publication?.topic }}
+        </span>
+      </div>
+
+      <div class="ml-auto text-sm text-slate-400 oswald-regular">
+        Author: <span class="text-slate-700">{{ publication?.author }}</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Content area (placeholder — use your publication content here) -->
+  <article class="prose max-w-none text-slate-700 lato-regular mt-6">
+
+<iframe
+  title="publication"
+  [src]="safeUrl"
+  class="w-full h-[50vh] rounded-lg"
+></iframe>
+
+  </article>
+</div>
