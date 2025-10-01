@@ -22,7 +22,7 @@ export class PublicationOpen implements OnInit {
     private sanitizer: DomSanitizer
   ) {
     if(this.router.currentNavigation()?.extras.state){
-      this.publication = this.router.currentNavigation()?.extras.state!['publications']
+      this.publication = this.router.currentNavigation()?.extras.state!['publication']
     }
   }
 
@@ -35,7 +35,14 @@ export class PublicationOpen implements OnInit {
       const idPublication: number = +(params.get('id') || '0')
       this.publication = this.publications.find(publication => publication.id === idPublication) || new Publication();
 
+    if(idPublication > this.publications.length || idPublication <= 0 ){
+      this.publication = new Publication()
+    }
+
+    else{
       this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('assets/' + (this.publication?.id ?? '0') + '.html');
-    });
+        }
+      }
+    );
   }
 }

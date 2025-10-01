@@ -11,7 +11,6 @@ export class PublicationsService {
 
 private readonly publications: Publication[] = [
   publication1,
-  publication2,
 ]
 
   findAllPublications(): Observable<Publication[]>{
