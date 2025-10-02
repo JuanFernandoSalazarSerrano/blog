@@ -1,24 +1,24 @@
 <!-- publication-card-component.html -->
 <article
-  class="max-w-xl w-full bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 text-black"
+  class="max-w-2xl w-full bg-white border border-gray-200 rounded-2xl p-8 sm:p-10 text-black"
   aria-labelledby="pub-title"
 >
   <header>
     <!-- Title -->
     <a
       id="pub-title"
-      class="block text-lg sm:text-2xl leading-tight archivo-black-regular no-underline hover:underline focus:outline-none focus:ring-2 focus:ring-gray-200"
+      class="block text-2xl sm:text-3xl leading-tight archivo-black-regular no-underline hover:underline focus:outline-none focus:ring-2 focus:ring-gray-200"
       >{{ publicationCartInfo.title }}</a
     >
 
     <!-- Meta row -->
-    <div class="mt-2 flex flex-wrap items-center text-sm text-gray-500 lato-regular">
+    <div class="mt-2 flex flex-wrap items-center text-base text-gray-500 lato-regular">
       <time class="text-gray-500">{{ publicationCartInfo.date }}</time>
     </div>
   </header>
 
   <!-- Description / excerpt -->
-  <p class="mt-4 text-sm lato-light text-gray-600 leading-relaxed">
+  <p class="mt-4 text-base lato-light text-gray-600 leading-relaxed">
     {{ publicationCartInfo.topic }}
   </p>
 

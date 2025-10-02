@@ -8,14 +8,77 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
-<body>
-</head>
 
 <!-- This is where you can start adding your own content. The code above this line is just boilerplate HTML that is required for the app to work. -->
-
 <body>
-  <h1 class="archivo-black-regular text-3xl md:text-4xl lg:text-5xl text-black leading-tight">
-    Hello world!
-  </h1>
+<section class="prose max-w-none text-black-700 lato-regular mt-6">
+  <p style="font-size:1.25rem;"></p>
+    I was working on the <strong>"CSRF"</strong> chapter of Hack The Box module <em>Session Security</em>. The lab requires you to spawn a target VM so you can follow along.
+  </p>
+
+  <figure class="my-6">
+    <img src="instruct.png" alt="Cross-Site Request Forgery example" class="w-full max-w-2xl rounded-md" loading="lazy">
+    <figcaption class="text-sm text-slate-500 mt-2">Figure 1 — Cross-Site Request Forgery example.</figcaption>
+  </figure>
+
+  <p style="font-size:1.25rem;"></p>
+    I opened Burp Suite's embedded browser. After pasting the hostname into the URL bar and pressing Enter, I was shown the following error:
+  </p>
+
+  <figure class="my-6">
+    <img src="burp.png" alt="Burp embedded browser showing 'ERROR - no route to host'" class="w-full max-w-2xl rounded-md" loading="lazy">
+    <figcaption class="text-sm text-slate-500 mt-2">Figure 2 — "ERROR — no route to host" displayed in Burp's embedded browser.</figcaption>
+  </figure>
+
+  <p style="font-size:1.25rem;"></p>
+    I tried refreshing and restarting Burp, but the error persisted. A quick search pointed me to two relevant threads (Stack Overflow and an HTB Reddit discussion).
+  </p>
+
+  <p style="font-size:1.25rem;"></p>
+    I was confused, but one comment suggested that on some corporate networks you must configure an upstream proxy. With that in mind, I checked Burp's proxy listener settings.
+  </p>
+
+  <figure class="my-6">
+    <img src="requesthandler.png" alt="Burp proxy listener — Request handling settings" class="w-full max-w-2xl rounded-md" loading="lazy">
+    <figcaption class="text-sm text-slate-500 mt-2">Figure 3 — Burp: Proxy → Options → Edit (listener) → Request handling.</figcaption>
+  </figure>
+
+  <p style="font-size:1.25rem;"></p>
+    Under <code class="font-mono bg-slate-100 px-1 rounded">Request handling</code> there is a <code class="font-mono bg-slate-100 px-1 rounded">Redirect to host</code> option. I first tried putting the HTB VPN IP there — no success. When I entered the target machine's IP address, the requests worked.
+  </p>
+
+    <figure class="my-7">
+    <img src="worked.png" alt="Multiple hostnames" class="w-full max-w-2xl rounded-md" loading="lazy">
+    <figcaption class="text-sm text-slate-500 mt-2">Figure 4 — Worked normally</figcaption>
+  </figure>
+
+  <h2 class="archivo-black-regular text-2xl mt-6">Why it wasn't working</h2>
+
+  <p style="font-size:1.25rem;"></p>
+    The lab instructions say: "Don't forget to configure the specified vhost (<code class="font-mono">xss.htb.net</code>) to access the application." I had accumulated multiple entries for the same hostname in <code class="font-mono">/etc/hosts</code>, each pointing to different IPs. Burp resolved the hostname to the first entry it found (the wrong IP), while Firefox (not using Burp's proxy) resolved to the correct, newer entry.
+  </p>
+
+  <figure class="my-8">
+    <img src="multiple.png" alt="Multiple hostnames" class="w-full max-w-2xl rounded-md" loading="lazy">
+    <figcaption class="text-sm text-slate-500 mt-2">Figure 5 — /etc/hosts</figcaption>
+  </figure>
+
+  <p style="font-size:1.25rem;"></p>
+    Setting <code class="font-mono bg-slate-100 px-1 rounded">Redirect to host</code> forced Burp to use the correct IP and bypass the ambiguous hostname resolution.
+  </p>
+
+
+  <p style="font-size:1.25rem;"><strong>Takeaway:</strong> Keep your <code class="font-mono">/etc/hosts</code> clean. When using a proxy, either use the correct IP or ensure the vhost and host header are configured properly.</p>
+  <br>
+  <strong>And also dont be dumb like me trying to do everything manually and use the automations they give you in the modules</strong>
+      <figure class="my-8">
+    <img src="automation.png" alt="Multiple hostnames" class="w-full max-w-2xl rounded-md" loading="lazy">
+    <figcaption class="text-sm text-slate-500 mt-2">Figure 6 — Automation!</figcaption>
+  </figure>
+  <p style="font-size:1.25rem;">— As this can not only save you headaches but also time!</p>
+
+</section>
+
+
 </body>
 </html>

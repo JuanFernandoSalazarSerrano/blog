@@ -33,6 +33,7 @@ export class PublicationOpen implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       const idPublication: number = +(params.get('id') || '0')
+      console.log(idPublication, 'sdsdsa')
       this.publication = this.publications.find(publication => publication.id === idPublication) || new Publication();
 
     if(idPublication > this.publications.length || idPublication <= 0 ){
