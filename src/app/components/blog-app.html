@@ -1,8 +1,29 @@
-<div class="flex flex-col min-h-screen">
+<!-- god forbid me for what im done, but im tired of css i just want to end this -->
+
+@if(isInPublication == true){
+    <div class="flex flex-col min-h-screen">
   <navbar-component></navbar-component>
-  <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-44 flex-1">
-    <user-component></user-component>
-    <router-outlet></router-outlet>
+  <div class="max-w-8xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row flex-1 md:gap-x-18">
+    <div class="flex flex-col md:w-1/4 mx-auto md:mx-0 md:ml-22">
+      <user-component></user-component>
+    </div>
+    <div class="flex flex-col flex-1">
+      <router-outlet></router-outlet>
+    </div>
   </div>
   <footer class="mt-auto"></footer>
 </div>
+}
+
+@else {<div class="flex flex-col min-h-screen">
+  <navbar-component></navbar-component>
+  <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row flex-1 md:gap-x-72">
+    <div class="flex flex-col md:w-1/4 ml-9">
+      <user-component></user-component>
+    </div>
+    <div class="flex flex-col flex-1">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <footer class="mt-auto"></footer>
+</div>}

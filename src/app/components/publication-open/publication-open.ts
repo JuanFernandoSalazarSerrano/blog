@@ -17,9 +17,9 @@ export class PublicationOpen implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private router: Router,
-    private publicationsService: PublicationsService,
-    private sanitizer: DomSanitizer
+    private readonly router: Router,
+    private readonly publicationsService: PublicationsService,
+    private readonly sanitizer: DomSanitizer
   ) {
     if(this.router.currentNavigation()?.extras.state){
       this.publication = this.router.currentNavigation()?.extras.state!['publication']
@@ -33,7 +33,6 @@ export class PublicationOpen implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       const idPublication: number = +(params.get('id') || '0')
-      console.log(idPublication, 'sdsdsa')
       this.publication = this.publications.find(publication => publication.id === idPublication) || new Publication();
 
     if(idPublication > this.publications.length || idPublication <= 0 ){
@@ -41,8 +40,9 @@ export class PublicationOpen implements OnInit {
     }
 
     else{
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('assets/' + (this.publication?.id ?? '0') + '.html');
-        }
+      // Example: If you store folder info in publication
+      const folder = 'publication' + this.publication.id
+      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`data/${folder}/${this.publication?.id}.html`);        }
       }
     );
   }
