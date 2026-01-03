@@ -18,7 +18,7 @@ export class Writeups implements OnInit {
   ngOnInit(): void {
     this.publicationsService.findAllPublications().subscribe(
       pubs => {
-        this.writeups = pubs.filter(solution => solution.topic === 'writeups');
+        this.writeups = pubs.filter(solution => solution.topic === 'Writeups');
       }
     );
   }
