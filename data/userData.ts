@@ -1,11 +1,11 @@
 import { User } from "../models/User";
 
 export const jfsalazar:User = {
-  name: "J F. Salazar Serrano - Tn",
-  alias: "tn",
+  name: "J F. Salazar Serrano",
+  alias: "Jf",
   occupation: "Vulnerability researcher",
   location: "/",
-  email: "twonibblesresearch@gmail.com",
-  ytchannel: "@2Nibbles",
+  email: "juanfernandosalazarserrano@gmail.com",
+  ytchannel: "@juanfernandosalazarserrano",
   imageurl: "https://picsum.photos/id/237/200/300"
 }

@@ -6,7 +6,7 @@ export const publication1:Publication = {
   title: 'How to fix "No route to host" error on Burp Suite',
   date: "Sep 26 2025",
   topic: "Solutions",
-  publishedIn: "TwoNibbles Blog",
-  author: "Tn"
+  publishedIn: "Jf Blog",
+  author: "JF"
 
 }
