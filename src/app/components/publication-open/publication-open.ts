@@ -42,7 +42,8 @@ export class PublicationOpen implements OnInit {
     else{
       // Example: If you store folder info in publication
       const folder = 'publication' + this.publication.id
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`data/${folder}/${this.publication?.id}.html`);        }
+      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`data/${folder}/${this.publication?.id}.html`);
+       }
       }
     );
   }
