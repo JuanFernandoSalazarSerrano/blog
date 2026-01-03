@@ -1,7 +1,7 @@
 import { User } from "../models/User";
 
 export const jfsalazar:User = {
-  name: "J F. Salazar Serrano - Tn",
+  name: "J F. Salazar Serrano",
   alias: "Jf",
   occupation: "Vulnerability researcher",
   location: "/",
